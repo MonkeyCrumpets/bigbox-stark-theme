@@ -1,0 +1,18 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"             
+             FocusVisualStyle="{x:Null}">
+    <UserControl.Effect>
+        <DropShadowEffect BlurRadius="10" ShadowDepth="3" Direction="270"  Opacity="0.25"/>
+    </UserControl.Effect>
+    <UserControl.Background>
+        <SolidColorBrush Color="#FF213142" Opacity="0.90" />    
+    </UserControl.Background>
+    <TextBlock Name="Text" FontFamily="LAUNCHBOX_ROOT_FOLDER/Themes/Stark/fonts/Akrobat-Regular.ttf#Akrobat" Foreground="White" TextTrimming="CharacterEllipsis" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" Padding="10" />
+</UserControl>

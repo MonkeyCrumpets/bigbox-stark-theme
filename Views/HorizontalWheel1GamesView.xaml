@@ -1,0 +1,104 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:transitions="clr-namespace:Unbroken.LaunchBox.Wpf.Transitions;assembly=Unbroken.LaunchBox.Wpf"
+             xmlns:coverFlow="clr-namespace:Unbroken.LaunchBox.Wpf.Controls.CoverFlow;assembly=Unbroken.LaunchBox.Wpf"
+             xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="1080" 
+             d:DesignWidth="1920" 
+             HorizontalAlignment="Stretch" 
+             VerticalAlignment="Stretch" >
+    <Canvas Name="Canvas">
+        <transitions:TransitionPresenter TransitionSelector="{Binding BackgroundTransitionSelector}" Content="{Binding BackgroundView}" Height="{Binding ElementName=Canvas, Path=ActualHeight}" Width="{Binding ElementName=Canvas, Path=ActualWidth}" IsContentVideo="true" />
+        <Grid Height="{Binding ElementName=Canvas, Path=ActualHeight}" Width="{Binding ElementName=Canvas, Path=ActualWidth}">
+            <Grid.Background>
+                <SolidColorBrush Color="#FF26394D" Opacity="{Binding BackgroundFade}" />
+            </Grid.Background>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="560*"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="200"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Column="1" Grid.Row="1" Margin="1460,0,60,0">
+                <Image Source="{Binding Path=Platform.ClearLogoImagePath}" HorizontalAlignment="Right"/>
+            </DockPanel>
+            <Border Grid.Row="3" Grid.RowSpan="3" Background="#22ffffff"/>
+            <Border Grid.Row="6" Background="#ddd">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="100" Opacity="0.75" Direction="0" ShadowDepth="0"/>
+                </Border.Effect>
+            </Border>
+            <Grid Grid.Row="4">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="60*" />
+                    <ColumnDefinition Width="420*" />
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="500*" />
+                    <ColumnDefinition Width="30*" />
+                    <ColumnDefinition Width="420*" />
+                    <ColumnDefinition Width="60*" />
+                </Grid.ColumnDefinitions>
+                <Grid Grid.Column="1">
+                    <transitions:TransitionPresenter Grid.Column="2" TransitionSelector="{Binding GameDetailsTransitionSelector}" Content="{Binding GameDetailsView}" Margin="0,-20,0,0"/>
+                </Grid>
+                <Grid Grid.Column="3" Grid.RowSpan="2">
+                    <transitions:TransitionPresenter x:Name="GameImage" Content="{Binding ImageView}" TransitionSelector="{Binding ImageTransitionSelector}" Panel.ZIndex="5">
+                        <transitions:TransitionPresenter.Effect>
+                            <DropShadowEffect BlurRadius="30" Direction="270" ShadowDepth="10" Opacity="0.5"/>
+                        </transitions:TransitionPresenter.Effect>
+                    </transitions:TransitionPresenter>
+                </Grid>
+                <Grid Grid.Column="5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="5*"/>
+                    </Grid.RowDefinitions>
+                    <Image Source="{Binding Path=ActiveGame.CartFrontImagePath}" Panel.ZIndex="5"/>
+                    <transitions:TransitionPresenter Grid.Row="2" TransitionSelector="{Binding ImageVideoTransitionSelector}" Content="{Binding ImageVideoView}" VerticalAlignment="Center" IsContentVideo="true" Panel.ZIndex="2">
+                        <transitions:TransitionPresenter.Effect>
+                            <DropShadowEffect BlurRadius="30" Direction="270" ShadowDepth="10" Opacity="0.5"/>
+                        </transitions:TransitionPresenter.Effect>
+                    </transitions:TransitionPresenter>
+                </Grid>
+            </Grid>
+            <Grid Grid.Row="6">
+                <coverFlow:FlowControl x:Name="FlowControl" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" ImageType="Clear Logo"
+                CurveAmount="0.0" CameraZPosition="8.0" VisibleCount="14" PageSize="4" Spacing="2.5" ItemZPosition="0.5" SelectedItemZPosition="3" Panel.ZIndex="100" >
+                    <coverFlow:FlowControl.CoverFactory>
+                        <coverFlow:HorizontalWheelCoverFactory />
+                    </coverFlow:FlowControl.CoverFactory>
+                    <coverFlow:FlowControl.Effect>
+                        <DropShadowEffect BlurRadius="10" Direction="270" ShadowDepth="3" Opacity="0.25"/>
+                    </coverFlow:FlowControl.Effect>
+                </coverFlow:FlowControl>
+            </Grid>
+            <Grid Grid.Row="7">
+    <DockPanel>
+        <ListBox Name="Index" Style="{DynamicResource HorizontalListBoxStyle}" DockPanel.Dock="Top" Height="60" Visibility="{Binding IndexVisibility}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <cal:ActionMessage MethodName="OnEnter" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+        <ListBox Name="Items" Style="{DynamicResource BoxListBoxStyle}" SelectedItem="{Binding SelectedItem}">
+            <i:Interaction.Triggers>
+                <i:EventTrigger EventName="MouseDoubleClick">
+                    <cal:ActionMessage MethodName="OnEnter" />
+                </i:EventTrigger>
+            </i:Interaction.Triggers>
+        </ListBox>
+    </DockPanel>
+            </Grid>
+        </Grid>
+    </Canvas>
+</UserControl>

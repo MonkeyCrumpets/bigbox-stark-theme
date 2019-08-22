@@ -1,0 +1,23 @@
+﻿<UserControl xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:controls="clr-namespace:Unbroken.LaunchBox.Wpf.Controls;assembly=Unbroken.LaunchBox.Wpf"
+             xmlns:cal="http://www.caliburnproject.org"
+             mc:Ignorable="d"
+             d:DesignHeight="300"
+             d:DesignWidth="300"
+             HorizontalAlignment="Stretch"
+             VerticalAlignment="Stretch"
+             FocusVisualStyle="{x:Null}">
+    <DockPanel x:Name="DockPanel"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#00FFFFFF">
+        <TextBlock x:Name="FilterTitle" Text="{Binding Title}" Visibility="{Binding TitleVisibility}" FontFamily="LAUNCHBOX_ROOT_FOLDER/Themes/Stark/fonts/HighTide-Bold.ttf#High Tide Bold" FontSize="48" FontWeight="Bold" Foreground="White" TextWrapping="Wrap" DockPanel.Dock="Top" Margin="0,0,0,10" />
+        <Canvas x:Name="DetailsCanvas" Width="{Binding ActualWidth, ElementName=DockPanel}" ClipToBounds="True" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding ScrollingDetailsVisibility}">
+            <controls:ScrollableTextBlock x:Name="ScrollingFilterDetails" Text="{Binding Details}" FontFamily="LAUNCHBOX_ROOT_FOLDER/Themes/Stark/fonts/Akrobat-Light.ttf#Akrobat" Foreground="White" TextWrapping="Wrap"
+                Width="{Binding ActualWidth, ElementName=DetailsCanvas}" ScrollBeginDelay="10" ScrollSpeed="3" ScrollAutoReverse="True"
+                ScrollEndDelay="10" ReverseScrollSpeed="0.5" FontSize="22" Margin="0,10,0,0">
+            </controls:ScrollableTextBlock>
+        </Canvas>
+        <TextBlock x:Name="Details" Text="{Binding Details}" Width="{Binding ActualWidth, ElementName=DockPanel}" FontFamily="LAUNCHBOX_ROOT_FOLDER/Themes/Stark/fonts/Akrobat-Regular.ttf#Akrobat" Foreground="White" TextWrapping="Wrap" TextTrimming="CharacterEllipsis" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Visibility="{Binding DetailsVisibility}" />
+    </DockPanel>
+</UserControl>
